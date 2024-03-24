@@ -1,0 +1,23 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. PLUSOUMOINS.
+       ENVIRONMENT DIVISION.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 WS-NB-ALEATOIRE PIC 9(3).
+       01 WS-SAISIE PIC 9(3).
+       01 SEED PIC 9(8).
+
+       PROCEDURE DIVISION.
+           
+           DISPLAY FUNCTION CURRENT-DATE(9:8).
+           MOVE FUNCTION CURRENT-DATE(9:8) TO SEED.
+           COMPUTE WS-NB-ALEATOIRE = FUNCTION RANDOM (SEED) * 100 + 1.
+           DISPLAY FUNCTION CURRENT-DATE(9:8).
+           DISPLAY WS-NB-ALEATOIRE.
+
+           PERFORM TEST BEFORE UNTIL WS-SAISIE =  WS-NB-ALEATOIRE
+              DISPLAY "Saisir un nombre"
+              ACCEPT WS-SAISIE
+           END-PERFORM.
+           DISPLAY "Félicitations vous avez gagné.".
+           STOP RUN.
